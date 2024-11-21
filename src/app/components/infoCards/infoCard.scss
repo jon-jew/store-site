@@ -1,0 +1,34 @@
+.info-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-card {
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;  
+
+  h4 {
+    font-family: var(--font-oswald);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+
+  }
+
+  p {
+    font-size: 14px;
+  }
+  
+  .info-card-image {
+    background-size: cover;
+    height: 150px;
+    width: 325px;
+  }
+
+  .info-card-content {
+    background: #FFF;
+    width: 325px;
+    padding: 10px 20px;
+  }
+}
