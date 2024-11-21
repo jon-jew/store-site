@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import Head from "next/head";
 import { Oswald, Funnel_Sans } from 'next/font/google';
 
-import Loading from './loading';
+import config from '../../next.config';
+
 import "./globals.css";
 
 const oswald = Oswald({
@@ -29,15 +30,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Suspense fallback={<Loading />}>
-        <body
-          className={`${funnelSans.variable} ${oswald.variable} antialiased`}
-        >
-          <div className="body-container">
-            {children}
-          </div>
-        </body>
-      </Suspense>
+      <Head>
+        <base href={config.basePath} />
+      </Head>
+      <body
+        className={`${funnelSans.variable} ${oswald.variable} antialiased`}
+      >
+        <div className="body-container">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
