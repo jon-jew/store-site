@@ -63,7 +63,7 @@ const Services = ({ onServiceSchedule }: ServicesProps) => {
               className="service-card"
             >
               <div className="service-card-image">
-                <Image src={item.image} fill alt={item.title} />
+                <Image src={`/store-site${item.image}`} fill alt={item.title} />
               </div>
               <div className="service-card-content">
                 <h3 className="service-card-title">

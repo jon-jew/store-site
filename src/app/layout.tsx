@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import Head from "next/head";
 import { Oswald, Funnel_Sans } from 'next/font/google';
-
-import config from '../../next.config';
 
 import "./globals.css";
 
@@ -30,9 +27,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <base href={config.basePath} />
-      </Head>
       <body
         className={`${funnelSans.variable} ${oswald.variable} antialiased`}
       >
