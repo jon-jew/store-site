@@ -1,43 +1,35 @@
 $small: 500px;
 
-.service-card-dot-list {
-  bottom: -20px;
-}
-
-#services {
-  position: absolute;
-  top: -69px;
-}
-
 .services {
-  padding: 30px 20px;
+  padding: 20px;
   width: 100%;
   position: relative;
   display: flex;
-  background: #ececec;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   h2 {
-    font-size: 35px;
     text-transform: uppercase;
-
-    @media screen and (max-width: $small) {
-      font-size: 30px;
-    }
+    font-size: 30px;
+    margin-bottom: 10px;
   }
 
   .service-card-container {
     position: relative;
     width: 100%;
-    padding: 10px;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
   }
 }
 div.service-card {
   background-size: contain;
   margin-top: 10px;
-  width: 200px;
+  width: 170px;
   border-radius: 5px;
   overflow: hidden;
   position: relative;
@@ -50,8 +42,8 @@ div.service-card {
 
   .service-card-image {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 170px;
+    height: 170px;
 
     @media screen and (max-width: $small) {
       width: 140px;
@@ -71,7 +63,7 @@ div.service-card {
 
     .service-card-price {
       margin-top: 8px;
-      font-size: 18px;
+      font-size: 15px;
 
       @media screen and (max-width: $small) {
         font-size: 16px;
@@ -82,6 +74,7 @@ div.service-card {
     .service-card-title {
       width: 80%;
       line-height: 20px;
+      font-size: 15px;
       height: 40px;
       font-family: var(--font-oswald);
       text-transform: uppercase;

@@ -20,10 +20,6 @@ import { getServiceList } from '@/app/resources/services';
 import './scheduleModal.scss'
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
   maxWidth: 450,
   minWidth: 300,
   bgcolor: 'background.paper',
@@ -48,102 +44,104 @@ const getTimeSlots = () => {
 };
 
 type ScheduleProps = {
-  option: string,
-  onClose: () => void,
+  option: string | null,
 }
 
-const ScheduleModal = ({ option, onClose }: ScheduleProps) => {
+const ScheduleModal = ({ option }: ScheduleProps) => {
   return (
-    <Box sx={style}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <form className="schedule-form">
-          <div className="field-row">
-            <EditCalendarIcon />
-            <h2>Schedule Appointment</h2>
-          </div>
-          {/* <StaticDateTimePicker disablePast /> */}
-          <div className="field-row">
-            <DatePicker sx={{ width: 130 }} disablePast />
-            <FormControl sx={{ width: 120 }}>
-              <InputLabel id="demo-simple-select-label">Time Slot</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Time Slot"
-              >
-                {getTimeSlots().map((timeSlot) =>
-                  <MenuItem key={timeSlot} value={timeSlot}>
-                    {timeSlot}
-                  </MenuItem>
-                )}
-              </Select>
-            </FormControl>
-          </div>
-          <Autocomplete
-            size="small"
-            disablePortal
-            options={[...getServiceList, 'Other']}
-            sx={{ width: 325, marginBottom: 2 }}
-            defaultValue={option}
-            renderInput={(params) => <TextField {...params} label="Service Type *" />}
-          />
-          <div className="field-row">
-            <TextField
-              required
-              id="outlined-required"
-              label="First Name"
+    <div className="appointment-container">
+      <h2>
+        <EditCalendarIcon fontSize="large" sx={{ marginTop: -1, marginRight: 1 }} />
+        Schedule Appointment
+      </h2>
+      <Box sx={style}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <form className="schedule-form">
+            {/* <StaticDateTimePicker disablePast /> */}
+            <div className="field-row">
+              <p>Please enter details of desired appointment.</p>
+            </div>
+            <div className="field-row">
+              <DatePicker sx={{ width: 130 }} disablePast />
+              <FormControl sx={{ width: 120 }}>
+                <InputLabel id="demo-simple-select-label">Time Slot</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Time Slot"
+                >
+                  {getTimeSlots().map((timeSlot) =>
+                    <MenuItem key={timeSlot} value={timeSlot}>
+                      {timeSlot}
+                    </MenuItem>
+                  )}
+                </Select>
+              </FormControl>
+            </div>
+            <Autocomplete
               size="small"
+              disablePortal
+              options={[...getServiceList, 'Other']}
+              sx={{ width: 310, marginBottom: 2 }}
+              defaultValue={option}
+              renderInput={(params) => <TextField {...params} label="Service Type *" />}
             />
-            <TextField
-              required
-              id="outlined-required"
-              label="Last Name"
-              size="small"
-            />
-          </div>
-          <div className="field-row">
+            <div className="field-row">
+              <TextField
+                required
+                id="outlined-required"
+                label="First Name"
+                size="small"
+              />
+              <TextField
+                required
+                id="outlined-required"
+                label="Last Name"
+                size="small"
+              />
+            </div>
+            <div className="field-row">
+
+              <TextField
+                required
+                id="outlined-required"
+                label="Email"
+                size="small"
+              />
+              <TextField
+                required
+                sx={{ width: 170 }}
+
+                id="outlined-required"
+                label="Phone"
+                size="small"
+              />
+            </div>
 
             <TextField
-              required
               id="outlined-required"
-              label="Email"
+              label="Aditional Comments"
               size="small"
+              multiline
+              maxRows={2}
             />
-            <TextField
-              required
-              sx={{ width: 170 }}
-
-              id="outlined-required"
-              label="Phone"
-              size="small"
-            />
-          </div>
-
-          <TextField
-            id="outlined-required"
-            label="Aditional Comments"
-            size="small"
-            multiline
-            maxRows={2}
-          />
-          <div className="field-row right-align">
-            <Button onClick={onClose}>
-              Cancel
-            </Button>
-            <Button onClick={onClose} variant="contained">
-              Submit
-            </Button>
-          </div>
-        </form>
-      </LocalizationProvider>
-
-    </Box>
+            <div className="field-row right-align">
+              {/* <Button>
+                Cancel
+              </Button> */}
+              <Button variant="contained">
+                Submit
+              </Button>
+            </div>
+          </form>
+        </LocalizationProvider>
+      </Box>
+    </div>
   )
 };
 
 ScheduleModal.propTypes = {
   option: PropTypes.string,
-  onClose: PropTypes.func.isRequired,
 };
 
 export default ScheduleModal;

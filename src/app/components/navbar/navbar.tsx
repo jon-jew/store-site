@@ -1,5 +1,8 @@
+"use client"
+
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,22 +10,19 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
 
-type ButtonProps = {
-  handleAppointments: () => void,
-  handlePolicies: () => void,
-}
+import './navbar.scss';
 
-function ResponsiveAppBar({ handleAppointments, handlePolicies, }: ButtonProps) {
+function ResponsiveAppBar() {
   const pages = [
-    { name: 'Services', action: null, link: '#services' }, 
-    { name: 'Appointments', action: handleAppointments, link: null},
-    { name: 'Policies', action: handlePolicies, link: null},
-    { name: 'Contact Us', action: null, link: '#contactUs'}
+    { name: 'Services', link: '/services' },
+    { name: 'Appointments', link: '/appointment' },
+    { name: 'Policies', link: '/policies' },
+    { name: 'Contact Us', link: '/#contactUs' }
   ];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -38,24 +38,6 @@ function ResponsiveAppBar({ handleAppointments, handlePolicies, }: ButtonProps) 
     <AppBar sx={{ backgroundColor: '#000' }} position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            STORENAME
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -84,63 +66,47 @@ function ResponsiveAppBar({ handleAppointments, handlePolicies, }: ButtonProps) 
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem
-                  key={page.name}
-                  onClick={() => {
-                    if (page.link) window.location.href = page.link;
-                    if (page.action) page.action();
-                    handleCloseNavMenu();
-                  }}
-                >
+                <Link key={page.name} href={page.link}>
+                  <MenuItem
+                    key={page.name}
+                    onClick={() => {
+                      handleCloseNavMenu();
+                    }}
+                  >
                     <Typography sx={{ textAlign: 'center', fontFamily: 'var(--font-oswald)', textTransform: 'uppercase' }}>
                       {page.name}
                     </Typography>
-                </MenuItem>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
+            <div className="logo-container small">
+              <Image src="/largeLogo.png" width={130} height={20} alt="navbar logo" />
+            </div>
+
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            STORENAME
-          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <div className="logo-container">
+              <Image src="/largeLogo.png" width={170} height={20} alt="navbar logo" />
+            </div>
+
             {pages.map((page) => (
-              <Button
-                key={page.name}
-                onClick={() => {
-                  if (page.link) window.location.href = page.link;
-                  if (page.action) page.action();
-                  handleCloseNavMenu();
-                }}
-                sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'var(--font-oswald)' }}
-              >
-                {page.name}
-              </Button>
+              <Link key={page.name} href={page.link}>
+                <Button
+                  onClick={() => {
+                    handleCloseNavMenu();
+                  }}
+                  sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'var(--font-oswald)' }}
+                >
+                  {page.name}
+                </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
-}
-
-ResponsiveAppBar.propTypes = {
-  handleAppointments: PropTypes.func.isRequired,
-  handlePolicies: PropTypes.func.isRequired,
 };
 
 export default ResponsiveAppBar;

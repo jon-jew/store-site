@@ -5,6 +5,7 @@ $medium: 1000px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-top: 10px;
 }
 
 .bottom-hero-card {
@@ -19,7 +20,7 @@ $medium: 1000px;
     
   }
   .hero-card-image {
-    background-image: url('/store-site/guns.png');;
+    background-image: url('/guns.png');;
     background-size: contain;
     height: 150px;
     width: 200px;

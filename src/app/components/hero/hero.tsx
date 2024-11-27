@@ -44,7 +44,7 @@ const Hero = () => {
     <div className="hero-container">
       <div
         className="hero"
-        style={{ backgroundImage: `url(/store-site${slideContent[slide].image})` }}
+        style={{ backgroundImage: `url(${slideContent[slide].image})` }}
       >
         <div className="hero-content">
           <h2 className="hero-title">
