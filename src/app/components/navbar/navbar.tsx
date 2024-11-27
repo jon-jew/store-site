@@ -81,13 +81,13 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
             <div className="logo-container small">
-              <Image src="/largeLogo.png" width={130} height={20} alt="navbar logo" />
+              <Image src="/store-site/largeLogo.png" width={130} height={20} alt="navbar logo" />
             </div>
 
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <div className="logo-container">
-              <Image src="/largeLogo.png" width={170} height={20} alt="navbar logo" />
+              <Image src="/store-site/largeLogo.png" width={170} height={20} alt="navbar logo" />
             </div>
 
             {pages.map((page) => (
